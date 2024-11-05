@@ -35,13 +35,6 @@ Cada microservicio está diseñado para cumplir una función específica y compa
 7. **Backups y Recuperación**  
    - Funciones: Respaldo periódico de bases de datos y restauración en caso de fallo.
 
-### Tecnologías Usadas
-
-- **Lenguaje de Programación**: Java (Spring Boot)
-- **Base de Datos Centralizada**: MySQL compartida entre los microservicios
-- **Mensajería**: Redis o RabbitMQ para notificaciones
-
-
 ## Instalación
 
 1. Clonar el repositorio
