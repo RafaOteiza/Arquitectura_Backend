@@ -1,5 +1,5 @@
 """
-WSGI config for proyecto_arquitectura project.
+WSGI config for usuarios_auth project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proyecto_arquitectura.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'usuarios_auth.settings')
 
 application = get_wsgi_application()

@@ -1,5 +1,5 @@
 """
-ASGI config for proyecto_arquitectura project.
+ASGI config for usuarios_auth project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proyecto_arquitectura.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'usuarios_auth.settings')
 
 application = get_asgi_application()
