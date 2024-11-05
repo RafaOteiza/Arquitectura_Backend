@@ -9,3 +9,6 @@ router.register(r'usuarios', UsuarioViewSet)
 urlpatterns = [
     path('', include(router.urls)),
 ]
+
+#Aqui se definen las rutas para los endpoints de la API
+#Seria weno que alguno probara con POSTMAN porque yo lo estoy haciendo directamente desde DJANGO. 
