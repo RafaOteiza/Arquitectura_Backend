@@ -10,4 +10,4 @@ class RolSerializer(serializers.ModelSerializer):
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuarios
-        fields = ['nombre', 'apellido', 'correo', 'contraseña', 'id_rol']  # Campos que quieres exponer
+        fields = ['id','nombre', 'apellido', 'correo', 'contraseña', 'id_rol']  # Campos que quieres exponer
