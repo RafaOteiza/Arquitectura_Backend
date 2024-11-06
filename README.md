@@ -8,17 +8,56 @@ Cada microservicio está diseñado para cumplir una función específica, con su
 
 ### Microservicios Implementados
 
-1. **Usuarios y Autenticación**  
+#### 1. Usuarios y Autenticación
    - **Tablas**: `Usuarios`, `Roles`
    - **Descripción**: Este servicio gestiona el acceso y control de los usuarios en el sistema, permitiendo autenticar y autorizar según los roles definidos (administrador, técnico, consultor).
    - **Funciones**: CRUD de usuarios, autenticación (login), asignación de roles y permisos.
    - **Dependencias Externas**: No necesita interactuar directamente con otros microservicios, pero los otros microservicios pueden consultar a este para verificar roles y permisos.
 
-2. **SIMs y MSISDN**  
+   #### Endpoints para Usuarios (`/usuarios/`)
+   - `GET /usuarios/`: Obtiene la lista de todos los usuarios.
+   - `POST /usuarios/`: Crea un nuevo usuario.
+   - `GET /usuarios/<id>/`: Obtiene la información de un usuario específico por su ID.
+   - `PUT /usuarios/<id>/`: Actualiza todos los campos de un usuario específico.
+   - `PATCH /usuarios/<id>/`: Actualiza uno o más campos de un usuario específico.
+   - `DELETE /usuarios/<id>/`: Elimina un usuario específico.
+
+   #### Endpoints para Roles (`/roles/`)
+   - `GET /roles/`: Obtiene la lista de todos los roles.
+   - `POST /roles/`: Crea un nuevo rol.
+   - `GET /roles/<id>/`: Obtiene la información de un rol específico por su ID.
+   - `PUT /roles/<id>/`: Actualiza todos los campos de un rol específico.
+   - `PATCH /roles/<id>/`: Actualiza uno o más campos de un rol específico.
+   - `DELETE /roles/<id>/`: Elimina un rol específico.
+
+#### 2. SIMs y MSISDN
    - **Tablas**: `msisdn`, `sim_msisdn`, `estado_sim`
    - **Descripción**: Este servicio maneja todo lo relacionado con las SIMs y sus números asociados (MSISDN). Incluye la administración de los estados de SIM y el seguimiento de las SIMs asignadas a cada MSISDN, con información sobre el estado y la disponibilidad.
    - **Funciones**: CRUD de SIMs y MSISDN, cambio de estado, asignación y disociación de SIMs a números MSISDN.
    - **Dependencias Externas**: Puede comunicarse con el microservicio de Validadores y Ubicaciones para registrar relaciones entre SIMs y validadores.
+
+   #### Microservicio de Sims (Puerto 8001)
+   
+   #### Endpoints para MSISDN (`/msisdn/`)
+   - `GET /msisdn/`: Lista todos los registros de MSISDN.
+   - `POST /msisdn/`: Crea un nuevo MSISDN.
+   - `GET /msisdn/<id>/`: Obtiene un MSISDN específico.
+   - `PUT /msisdn/<id>/`: Actualiza un MSISDN específico.
+   - `DELETE /msisdn/<id>/`: Elimina un MSISDN específico.
+
+   #### Endpoints para SimMsisdn (`/sim-msisdn/`)
+   - `GET /sim-msisdn/`: Lista todos los registros de SimMsisdn.
+   - `POST /sim-msisdn/`: Crea un nuevo SimMsisdn.
+   - `GET /sim-msisdn/<id>/`: Obtiene un SimMsisdn específico.
+   - `PUT /sim-msisdn/<id>/`: Actualiza un SimMsisdn específico.
+   - `DELETE /sim-msisdn/<id>/`: Elimina un SimMsisdn específico.
+
+   #### Endpoints para EstadoSim (`/estado-sim/`)
+   - `GET /estado-sim/`: Lista todos los registros de EstadoSim.
+   - `POST /estado-sim/`: Crea un nuevo EstadoSim.
+   - `GET /estado-sim/<id>/`: Obtiene un EstadoSim específico.
+   - `PUT /estado-sim/<id>/`: Actualiza un EstadoSim específico.
+   - `DELETE /estado-sim/<id>/`: Elimina un EstadoSim específico.
 
 3. **Validadores y Ubicaciones**  
    - **Tablas**: `validador`, `estado_validador`, `Ubicacion`
