@@ -4,6 +4,7 @@ from .views import UsuarioViewSet, RolViewSet
 
 router = DefaultRouter()
 router.register(r'roles', RolViewSet)
+# Esta es la vista que me returna todos los usuarios para después usar en lasplantillas :p
 router.register(r'usuarios', UsuarioViewSet)
 
 urlpatterns = [
