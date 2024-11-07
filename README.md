@@ -1,14 +1,30 @@
 # Arquitectura de Microservicios
 
-Este proyecto está estructurado en cinco microservicios principales para gestionar la funcionalidad del sistema de validadores y SIMs. Cada microservicio tiene su propia responsabilidad y permite la modularización y escalabilidad del sistema.
+Este proyecto está estructurado en cinco microservicios principales para gestionar la funcionalidad del sistema de validadores y SIMs. Cada microservicio tiene su propia responsabilidad y permite la modularización y escalabilidad del sistema. Cada microservicio está diseñado para cumplir una función específica, con su propia base de datos y lógica. Los servicios se comunican entre sí según lo requiera la lógica de negocio.
 
-## Estructura de Microservicios
+## ¿Cómo probar el proyecto?
 
-Cada microservicio está diseñado para cumplir una función específica, con su propia base de datos y lógica. Los servicios se comunican entre sí según lo requiera la lógica de negocio.
+### Instalación de dependencias
+- Al descargar el proyecto y al intentar ejecutar `python manage.py runserver`, es posible que aparezca un error debido a dependencias faltantes. Para solucionarlo, instala los paquetes necesarios con los siguientes comandos:
+
+   - `pip install djangorestframework`
+   - `pip install requests`
+
+### Ejecución de los microservicios
+- Cada microservicio debe ejecutarse de forma independiente, ya que no pueden compartir el mismo puerto. A continuación se detalla cómo levantar cada uno:
+
+   - **Usuarios**: utiliza el puerto 8000.
+   - **Sims**: utiliza el puerto 8001.
+
+- Para ejecutar cada microservicio, abre un terminal separado y ejecuta:
+
+   ```bash
+   python manage.py runserver 8000  # Para el microservicio Usuarios
+   python manage.py runserver 8001  # Para el microservicio Sims
 
 ### Microservicios Implementados
 
-#### 1. Usuarios y Autenticación
+#### 1. Usuarios y Autenticación (antes de la url utiliza `/usuarios/`)
    - **Tablas**: `Usuarios`, `Roles`
    - **Descripción**: Este servicio gestiona el acceso y control de los usuarios en el sistema, permitiendo autenticar y autorizar según los roles definidos (administrador, técnico, consultor).
    - **Funciones**: CRUD de usuarios, autenticación (login), asignación de roles y permisos.
@@ -30,7 +46,7 @@ Cada microservicio está diseñado para cumplir una función específica, con su
    - `PATCH /roles/<id>/`: Actualiza uno o más campos de un rol específico.
    - `DELETE /roles/<id>/`: Elimina un rol específico.
 
-#### 2. SIMs y MSISDN
+#### 2. SIMs y MSISDN (antes de la url utiliza `/sims/`)
    - **Tablas**: `msisdn`, `sim_msisdn`, `estado_sim`
    - **Descripción**: Este servicio maneja todo lo relacionado con las SIMs y sus números asociados (MSISDN). Incluye la administración de los estados de SIM y el seguimiento de las SIMs asignadas a cada MSISDN, con información sobre el estado y la disponibilidad.
    - **Funciones**: CRUD de SIMs y MSISDN, cambio de estado, asignación y disociación de SIMs a números MSISDN.
