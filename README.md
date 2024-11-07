@@ -92,3 +92,5 @@ Este proyecto está estructurado en cinco microservicios principales para gestio
    - **Descripción**: Este microservicio se encarga de generar reportes y enviar notificaciones en función de los datos en otros microservicios. Si es necesario, puedes usarlo para monitorear cambios de estado, registrar eventos importantes, y generar reportes específicos para los consultores.
    - **Funciones**: Generación de reportes, consulta de estados, generación de notificaciones según eventos en otros microservicios.
    - **Dependencias Externas**: Consume datos de los microservicios SIMs y MSISDN, Validadores y Ubicaciones, y Relación y Movimiento de SIMs y Validadores.
+
+V.2
