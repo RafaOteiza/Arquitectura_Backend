@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import MSISDNViewSet, SimMsisdnViewSet, EstadoSimViewSet, TestUsuarioView
+from . import views
 
 router = DefaultRouter()
 router.register(r'msisdn', MSISDNViewSet)
@@ -10,5 +11,5 @@ router.register(r'estado-sim', EstadoSimViewSet)
 urlpatterns = [
     path('', include(router.urls)),  # Incluir el router
     path('test-usuario/<int:id_usuario>/', TestUsuarioView.as_view(), name='test-usuario'),
-
+    path('index/', views.index, name='index'),
 ]
