@@ -1,10 +1,11 @@
 from rest_framework import viewsets
 from .models import MSISDN, SimMsisdn, EstadoSim
 from .serializers import MSISDNSerializer, SimMsisdnSerializer, EstadoSimSerializer
+from django.shortcuts import render
 
 # probando si funciona llamar a la api
 from rest_framework.response import Response
-from .utils import obtener_usuario
+from .utils import obtener_usuario, obtener_todos
 from rest_framework.views import APIView
 
 
@@ -28,3 +29,11 @@ class TestUsuarioView(APIView):
             return Response(usuario)
         else:
             return Response({"error": "Usuario no encontrado o no se pudo conectar a usuarios_auth"}, status=404)
+        
+def index(request):
+
+    usuarioo = obtener_todos()
+ # Aqui tengo que ejecutar las funciones del crud aa que retornen los datos que necesito para la plantilla :p
+    return render(request, 'index.html', {'usuario': usuarioo})
+
+
