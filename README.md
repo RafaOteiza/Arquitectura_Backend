@@ -1,26 +1,33 @@
 # Arquitectura de Microservicios
+# Arquitectura de Microservicios
 
-Este proyecto está estructurado en cinco microservicios principales para gestionar la funcionalidad del sistema de validadores y SIMs. Cada microservicio tiene su propia responsabilidad y permite la modularización y escalabilidad del sistema. Cada microservicio está diseñado para cumplir una función específica, con su propia base de datos y lógica. Los servicios se comunican entre sí según lo requiera la lógica de negocio.
+Este proyecto se compone de cinco microservicios, cada uno gestionando una parte específica del sistema de validadores y SIMs. La modularidad permite escalabilidad y una separación clara de responsabilidades, con cada microservicio teniendo su base de datos y lógica independientes.
 
 ## ¿Cómo probar el proyecto?
 
 ### Instalación de dependencias
-- Al descargar el proyecto y al intentar ejecutar `python manage.py runserver`, es posible que aparezca un error debido a dependencias faltantes. Para solucionarlo, instala los paquetes necesarios con los siguientes comandos:
+- Al ejecutar `python manage.py runserver`, es posible que aparezcan errores por dependencias faltantes. Instala los paquetes necesarios con los siguientes comandos:
 
-   - `pip install djangorestframework`
-   - `pip install requests`
+   ```bash
+   pip install djangorestframework
+   pip install requests
+
 
 ### Ejecución de los microservicios
 - Cada microservicio debe ejecutarse de forma independiente, ya que no pueden compartir el mismo puerto. A continuación se detalla cómo levantar cada uno:
 
    - **Usuarios**: utiliza el puerto 8000.
    - **Sims**: utiliza el puerto 8001.
+   - **Validadores**: utiliza el puerto 8002.
+
 
 - Para ejecutar cada microservicio, abre un terminal separado y ejecuta:
 
    ```bash
    python manage.py runserver 8000  # Para el microservicio Usuarios
    python manage.py runserver 8001  # Para el microservicio Sims
+   python manage.py runserver 8002  # Para el microservicio Validadores
+
 
 ### Microservicios Implementados
 
@@ -78,12 +85,12 @@ Este proyecto está estructurado en cinco microservicios principales para gestio
 3. **Validadores y Ubicaciones**  
 
    #### Endpoints
-   - {
-    - "ubicaciones": "http://127.0.0.1:8002/validadores/ubicaciones/",
-    - "estados_validador": "http://127.0.0.1:8002/validadores/estados_validador/",
-   - "validadores": "http://127.0.0.1:8002/validadores/validadores/"
-   - }
-   
+   `{
+      "ubicaciones": "http://127.0.0.1:8002/validadores/ubicaciones/",
+      "estados_validador": "http://127.0.0.1:8002/validadores/estados_validador/",
+      "validadores": "http://127.0.0.1:8002/validadores/validadores/"
+   }`
+
    - **Tablas**: `validador`, `estado_validador`, `Ubicacion`
    - **Descripción**: Este es el núcleo del sistema, ya que maneja los validadores, incluyendo su estado, ubicación actual y serie. Este servicio gestiona la ubicación y el estado de los validadores para simplificar las consultas.
    - **Funciones**: CRUD de validadores, actualización de estado, cambio de ubicación, creación y administración de ubicaciones.
