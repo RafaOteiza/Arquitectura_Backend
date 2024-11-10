@@ -4,7 +4,12 @@ from .models import MSISDN, SimMsisdn, EstadoSim
 class MSISDNSerializer(serializers.ModelSerializer):
     class Meta:
         model = MSISDN
-        fields = '__all__'
+        fields = [
+            'msisdn', 'nodo_concert_ip', 'nodo_condor_ip', 
+            'id_usuario', 'fecha_creacion', 
+            'usuario_nombre', 'usuario_apellido', 'usuario_correo'
+        ]
+        read_only_fields = ['usuario_nombre', 'usuario_apellido', 'usuario_correo']
 
 class SimMsisdnSerializer(serializers.ModelSerializer):
     class Meta:
