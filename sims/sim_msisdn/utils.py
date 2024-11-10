@@ -30,15 +30,20 @@ def obtener_todos():
     return usuarios
 
 
-def obtener_datos_usuario(id_usuario):
-    url = f'{settings.USUARIOS_AUTH_URL}/usuarios/usuarios/{id_usuario}/'  # Asegúrate de usar el puerto correcto
+def obtener_datos_externos(url):
+    """Función general para obtener datos externos de una URL."""
     try:
         response = requests.get(url)
         if response.status_code == 200:
             return response.json()
         else:
-            print(f"Error: Usuario con id {id_usuario} no encontrado. Status code: {response.status_code}")
+            print(f"Error: Datos no encontrados. Status code: {response.status_code}")
             return None
     except requests.exceptions.RequestException as e:
-        print(f"Error al conectar con el servicio de usuarios: {e}")
+        print(f"Error al conectar con el servicio externo: {e}")
         return None
+
+def obtener_datos_usuario(id_usuario):
+    """Función específica para obtener datos de usuario desde usuarios_auth."""
+    url = f'{settings.USUARIOS_AUTH_URL}/usuarios/usuarios/{id_usuario}/' #en algun punto saldrá mejor cambiar esa ruta. :(
+    return obtener_datos_externos(url)
