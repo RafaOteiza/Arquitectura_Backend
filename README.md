@@ -11,6 +11,15 @@ Este proyecto se compone de cuatro microservicios, cada uno gestionando una part
    pip install djangorestframework
    pip install requests
 
+### Ignorar archivos de caché
+
+- Para evitar conflictos con archivos de caché de Python en el control de versiones, necesitas crear un archivo llamado `.gitignore` en la carpeta principal del proyecto y agregar lo siguiente:
+
+    ```plaintext
+    # Ignorar archivos de caché de Python
+    *.pyc
+    
+
 ### Ejecución de los microservicios
 - Cada microservicio debe ejecutarse de forma independiente, ya que no pueden compartir el mismo puerto. A continuación se detalla cómo levantar cada uno:
 

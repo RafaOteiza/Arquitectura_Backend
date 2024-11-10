@@ -9,7 +9,7 @@ router = DefaultRouter()
 router.register(r'ubicaciones', UbicacionViewSet)
 router.register(r'estados-validador', EstadoValidadorViewSet)
 router.register(r'validadores', ValidadorViewSet)
-router.register(r'sim_validador', SimValidadorViewSet)
+router.register(r'sim-validador', SimValidadorViewSet)
 router.register(r'historial-ubicaciones', HistorialUbicacionesValidadorViewSet)
 
 urlpatterns = [
