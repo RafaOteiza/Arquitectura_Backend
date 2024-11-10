@@ -123,3 +123,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+USUARIOS_AUTH_URL = 'http://127.0.0.1:8000' # llamando a la leserita del otro microservicio. 
