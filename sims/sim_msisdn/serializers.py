@@ -9,7 +9,12 @@ class MSISDNSerializer(serializers.ModelSerializer):
 class SimMsisdnSerializer(serializers.ModelSerializer):
     class Meta:
         model = SimMsisdn
-        fields = '__all__'
+        fields = [
+            'iccid', 'id_msisdn', 'inicio_relacion', 'fin_relacion', 
+            'motivo_fin', 'id_estado', 'id_usuario', 'fecha_creacion',
+            'usuario_nombre', 'usuario_apellido', 'usuario_correo'
+        ]
+        read_only_fields = ['usuario_nombre', 'usuario_apellido', 'usuario_correo']
 
 class EstadoSimSerializer(serializers.ModelSerializer):
     class Meta:
