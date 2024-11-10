@@ -76,6 +76,14 @@ Este proyecto está estructurado en cinco microservicios principales para gestio
    - `DELETE /estado-sim/<id>/`: Elimina un EstadoSim específico.
 
 3. **Validadores y Ubicaciones**  
+
+   #### Endpoints
+   - {
+    - "ubicaciones": "http://127.0.0.1:8002/validadores/ubicaciones/",
+    - "estados_validador": "http://127.0.0.1:8002/validadores/estados_validador/",
+   - "validadores": "http://127.0.0.1:8002/validadores/validadores/"
+   - }
+   
    - **Tablas**: `validador`, `estado_validador`, `Ubicacion`
    - **Descripción**: Este es el núcleo del sistema, ya que maneja los validadores, incluyendo su estado, ubicación actual y serie. Este servicio gestiona la ubicación y el estado de los validadores para simplificar las consultas.
    - **Funciones**: CRUD de validadores, actualización de estado, cambio de ubicación, creación y administración de ubicaciones.
