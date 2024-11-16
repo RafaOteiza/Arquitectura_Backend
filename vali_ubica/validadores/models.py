@@ -28,7 +28,7 @@ class Validador(models.Model):
     usuario_correo = models.EmailField(blank=True, null=True)
 
     def __str__(self):
-        return f"Validador {self.serie_val}"
+        return f"{self.amid_val}"
 
     def save(self, *args, **kwargs):
         # Llama a la función para obtener datos del usuario y llenar los campos de usuario
@@ -52,11 +52,11 @@ class SimValidador(models.Model):
     usuario_correo = models.EmailField(blank=True, null=True)
 
     def __str__(self):
-        return f"SIM {self.iccid} - Validador {self.amid_val}"
+        return f"SIM {self.iccid} - Validador AMID {self.amid_val.amid_val}"
 
     def save(self, *args, **kwargs):
         # Llama a la función para obtener datos del usuario y llenar los campos de usuario
-        usuario_data = obtener_datos_usuario(self.id_usuario)
+        usuario_data = obtener_datos_usuario(self.id_usuario)   
         if usuario_data:
             self.usuario_nombre = usuario_data.get('nombre')
             self.usuario_apellido = usuario_data.get('apellido')
