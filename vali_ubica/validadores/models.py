@@ -28,7 +28,7 @@ class Validador(models.Model):
     usuario_correo = models.EmailField(blank=True, null=True)
 
     def __str__(self):
-        return f"Validador {self.serie_val}"
+        return f"{self.amid_val}"
 
     def save(self, *args, **kwargs):
         # Llama a la función para obtener datos del usuario y llenar los campos de usuario
@@ -52,19 +52,30 @@ class SimValidador(models.Model):
     usuario_correo = models.EmailField(blank=True, null=True)
 
     def __str__(self):
-        return f"SIM {self.iccid} - Validador {self.amid_val}"
+        return f"SIM {self.iccid} - Validador AMID {self.amid_val.amid_val}"
 
     def save(self, *args, **kwargs):
         # Llama a la función para obtener datos del usuario y llenar los campos de usuario
-        usuario_data = obtener_datos_usuario(self.id_usuario)
+        usuario_data = obtener_datos_usuario(self.id_usuario)   
         if usuario_data:
             self.usuario_nombre = usuario_data.get('nombre')
             self.usuario_apellido = usuario_data.get('apellido')
             self.usuario_correo = usuario_data.get('correo')
         super().save(*args, **kwargs)
 
+from django.db import models
+from .utils import obtener_datos_usuario
+
 class HistorialUbicacionesValidador(models.Model):
-    id_movimiento = models.IntegerField()
+    MOVIMIENTO_CHOICES = [
+        ('Entrada', 'Entrada'),
+        ('Salida', 'Salida'),
+    ]
+
+    id_movimiento = models.CharField(
+        max_length=10,
+        choices=MOVIMIENTO_CHOICES
+    )
     id_validador = models.ForeignKey('Validador', on_delete=models.CASCADE)
     ubicacion_nueva = models.ForeignKey('Ubicacion', on_delete=models.CASCADE)
     fecha_movimiento = models.DateField()
@@ -78,7 +89,7 @@ class HistorialUbicacionesValidador(models.Model):
         unique_together = ('id_movimiento', 'id_validador')
 
     def __str__(self):
-        return f"Movimiento {self.id_movimiento} - Validador {self.id_validador}"
+        return f"{self.id_movimiento} - Validador {self.id_validador}"
 
     def save(self, *args, **kwargs):
         # Llama a la función para obtener datos del usuario y llenar los campos de usuario

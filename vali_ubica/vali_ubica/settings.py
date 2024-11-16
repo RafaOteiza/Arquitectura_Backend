@@ -125,3 +125,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 USUARIOS_AUTH_URL = 'http://127.0.0.1:8000' # llamando a la leserita del otro microservicio. 
+SIMS_URL = 'http://127.0.0.1:8001'  # lLAMANDO AL MICRO SERVICIO DE SIMS
+

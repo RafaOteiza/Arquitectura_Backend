@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from .models import MSISDN, SimMsisdn, EstadoSim
 from .serializers import MSISDNSerializer, SimMsisdnSerializer, EstadoSimSerializer
 from django.shortcuts import render
@@ -16,7 +16,9 @@ class MSISDNViewSet(viewsets.ModelViewSet):
 class SimMsisdnViewSet(viewsets.ModelViewSet):
     queryset = SimMsisdn.objects.all()
     serializer_class = SimMsisdnSerializer
-
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['iccid']  # Permite buscar por el campo `iccid`
+    
 class EstadoSimViewSet(viewsets.ModelViewSet):
     queryset = EstadoSim.objects.all()
     serializer_class = EstadoSimSerializer
