@@ -76,7 +76,7 @@ USE_TZ = True
 
 # Archivos estáticos
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+
 
 # Configuración del campo clave principal
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
