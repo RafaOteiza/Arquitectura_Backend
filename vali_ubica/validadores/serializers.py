@@ -26,6 +26,7 @@ class ValidadorSerializer(serializers.ModelSerializer):
             'id_estado_validador', 'estado_validador_nombre'  # Incluimos el nombre del estado
         ]
         read_only_fields = ['usuario_nombre', 'usuario_apellido', 'usuario_correo']
+        
 
 class SimValidadorSerializer(serializers.ModelSerializer):
     iccid = serializers.ChoiceField(choices=[], required=True)  # Sobrescribe el campo con opciones dinámicas

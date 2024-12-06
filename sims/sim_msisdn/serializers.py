@@ -20,8 +20,8 @@ class MSISDNSerializer(serializers.ModelSerializer):
 
 # Serializador para SimMsisdn
 class SimMsisdnSerializer(serializers.ModelSerializer):
-    id_msisdn = MSISDNSerializer()  # Serializa los detalles completos de MSISDN
-    id_estado = EstadoSimSerializer()  # Serializa los detalles completos del EstadoSim
+    id_msisdn = MSISDNSerializer(required=False, allow_null=True)  # Serializa los detalles completos de MSISDN
+    id_estado = serializers.PrimaryKeyRelatedField(queryset=EstadoSim.objects.all())  # Solo acepta ID al escribir
 
     class Meta:
         model = SimMsisdn

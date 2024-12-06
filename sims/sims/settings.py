@@ -80,3 +80,6 @@ STATIC_URL = '/static/'
 
 # Configuración del campo clave principal
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# URL base para el microservicio de Usuarios
+USUARIOS_AUTH_URL = "http://127.0.0.1:8000"  # Asegúrate de que esta URL sea correcta

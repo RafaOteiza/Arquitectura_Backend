@@ -35,12 +35,12 @@ class MSISDN(models.Model):
 
 class SimMsisdn(models.Model):
     iccid = models.CharField(max_length=20, unique=True)
-    id_msisdn = models.ForeignKey('MSISDN', on_delete=models.CASCADE)
+    id_msisdn = models.ForeignKey('MSISDN', on_delete=models.CASCADE, null=True, blank=True)
     inicio_relacion = models.DateField()
     fin_relacion = models.DateField(null=True, blank=True)
     motivo_fin = models.CharField(max_length=20, blank=True, null=True)
     id_estado = models.ForeignKey('EstadoSim', on_delete=models.CASCADE)
-    id_usuario = models.IntegerField() 
+    id_usuario = models.IntegerField()
     fecha_creacion = models.DateField()
     usuario_nombre = models.CharField(max_length=100, blank=True, null=True)
     usuario_apellido = models.CharField(max_length=100, blank=True, null=True)
@@ -48,6 +48,7 @@ class SimMsisdn(models.Model):
 
     def __str__(self):
         return self.iccid
+
 
     def save(self, *args, **kwargs):
         # Llama a la función para obtener datos del usuario

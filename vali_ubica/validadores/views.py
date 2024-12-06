@@ -55,26 +55,36 @@ class ValidadorViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     # Endpoint para manejar carga masiva
-    @action(detail=False, methods=['post'])
-    def bulk_create(self, request):
-        """
-        Endpoint para realizar carga masiva de validadores.
-        """
-        try:
-            with transaction.atomic():
-                validadores_data = request.data
-                if not isinstance(validadores_data, list):
-                    return Response({'error': 'Se espera una lista de objetos para la carga masiva.'}, status=status.HTTP_400_BAD_REQUEST)
-                
-                validadores = []
-                for validador_data in validadores_data:
-                    serializer = self.serializer_class(data=validador_data)
-                    serializer.is_valid(raise_exception=True)
-                    validadores.append(serializer.save())
+@action(detail=False, methods=['post'])
+def bulk_create(self, request):
+    """
+    Endpoint para realizar carga masiva de validadores.
+    """
+    errores = []
+    validadores = []
+    data = request.data
 
-                return Response({'message': f'Se han creado {len(validadores)} validadores con éxito.'}, status=status.HTTP_201_CREATED)
+    if not isinstance(data, list):
+        return Response({'error': 'Se espera una lista de objetos para la carga masiva.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    for index, validador_data in enumerate(data):
+        try:
+            # Agregar valores predeterminados
+            validador_data['id_ubicacion'] = 6  # LAB-DEV
+            validador_data['id_estado_validador'] = 2  # DISPONIBLE
+            validador_data['fecha_creacion'] = timezone.now().date()
+            validador_data['id_usuario'] = request.user.id
+
+            serializer = self.get_serializer(data=validador_data)
+            serializer.is_valid(raise_exception=True)
+            validadores.append(serializer.save())
         except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            errores.append(f"Fila {index + 2}: {str(e)}")
+
+    if errores:
+        return Response({'error': 'Errores durante la carga masiva.', 'detalles': errores}, status=status.HTTP_400_BAD_REQUEST)
+
+    return Response({'message': f'Se han creado {len(validadores)} validadores con éxito.'}, status=status.HTTP_201_CREATED)
 
 
 class SimValidadorViewSet(viewsets.ModelViewSet):
